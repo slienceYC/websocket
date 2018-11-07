@@ -1,10 +1,12 @@
 package com.dhht.config;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 //configurator = WebsocketConfig.class 该属性就是我上面配置的信息
@@ -20,7 +22,8 @@ public class WebSocket {
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
 
-    private HttpServletRequest httpServletRequest;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
     /**
      * 连接建立成功调用的方法
      * <p>
@@ -48,6 +51,18 @@ public class WebSocket {
         System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
 
+    @Scheduled(fixedRate = 6000)
+    public void onTime() {
+        System.out.println("执行定时任务-------");
+        for (WebSocket item : webSocketSet) {
+            try {
+                item.sendMessage("现在时间：" + dateFormat.format(new Date()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * 收到客户端消息后调用的方法
      *
@@ -55,7 +70,8 @@ public class WebSocket {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println("来自客户端的消息:" + message);
+        //System.out.println("来自客户端的消息:" + message);
+        message = "现在时间：" + dateFormat.format(new Date());
         //群发消息
         for (WebSocket item : webSocketSet) {
             try {

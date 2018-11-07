@@ -7,8 +7,8 @@
     <script th:src="@{js/jquery-3.1.1.js}"></script>
 </head>
 <body>
-欢迎<br/>
-<input id="text" type="text" /><button onclick="send()">发送</button>    <button onclick="closeWebSocket()">关闭连接</button>
+<h1>定时推送：</h1>
+<!--<input id="text" type="text" /><button onclick="send()">发送</button>    <button onclick="closeWebSocket()">关闭连接</button>-->
 <div id="message">
 </div>
 </body>
@@ -18,7 +18,7 @@
 
     //判断当前浏览器是否支持WebSocket
     if('WebSocket' in window){
-        websocket = new WebSocket("ws://localhost:8090/websocket");
+        websocket = new WebSocket("ws://localhost:8010/websocket");
     }
     else{
         alert('Not support websocket')
