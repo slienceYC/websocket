@@ -53,7 +53,7 @@ public class WebSocket {
 
     @Scheduled(fixedRate = 6000)
     public void onTime() {
-        System.out.println("执行定时任务-------");
+        //System.out.println("执行定时任务-------");
         for (WebSocket item : webSocketSet) {
             try {
                 item.sendMessage("现在时间：" + dateFormat.format(new Date()));

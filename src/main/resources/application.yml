@@ -23,3 +23,16 @@ spring:
       test-on-return: false
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
+
+
+redis:
+    database: 0
+    host: 10.0.0.127
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: -1
+        max-active: 8
+    timeout: 10000
