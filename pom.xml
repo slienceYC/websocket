@@ -7,6 +7,7 @@
     <groupId>com.dhht</groupId>
     <artifactId>SptringBootDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
 
 
@@ -45,11 +46,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -87,7 +84,7 @@
             <!-- 1.5的版本默认采用的连接池技术是jedis  2.0以上版本默认连接池是lettuce, 在这里采用jedis，所以需要排除lettuce的jar -->
             <exclusions>
                 <exclusion>
-                    <groupId>redis.clients</groupId>
+                    <groupId>rredis.clients</groupId>
                     <artifactId>jedis</artifactId>
                 </exclusion>
                 <exclusion>
